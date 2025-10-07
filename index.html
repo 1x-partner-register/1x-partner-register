@@ -439,19 +439,19 @@ form && form.addEventListener('submit', async (e)=>{
     return;
   }
 
-  // prepare message (Markdown-safe)
-const escapeMd = txt => String(txt).replace(/([_*[\]()~`>#+-=|{}.!])/g, '\\$1');
-const message = [
-  '📥 *تسجيل شريك جديد*',
-  `*الاسم:* ${name}`,
-  `*الهاتف:* ${phone}`,
-  `*واتساب:* ${whatsapp}`,
-  `*يوزر تيليجرام:* ${escapeMd(telegramUser)}`,
-  `*البريد:* ${escapeMd(email)}`,
-  `*المصدر:* Landing Page`
-].join('\n');
+  // prepare message (Plain text)
+const message = `
+📥 تسجيل شريك جديد
+الاسم: ${name}
+الهاتف: ${phone}
+واتساب: ${whatsapp}
+يوزر تيليجرام: ${telegramUser}
+البريد: ${email}
+المصدر: Landing Page
+`;
 
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
 
   // disable submit to prevent double-send
   const btn = form.querySelector('.submit-btn');
